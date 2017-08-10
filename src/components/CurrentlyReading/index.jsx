@@ -9,7 +9,11 @@ class CurrentlyReading extends Component {
         <h2 className="bookshelf-title">Currently Reading</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-              <Book/>
+            {
+              Object.keys(this.props.books).map((key)=>(
+              this.props.books[key] ? <Book key={this.props.books[key].id} book={this.props.books[key]}/> : null
+              ))
+            }
           </ol>
         </div>
       </div>

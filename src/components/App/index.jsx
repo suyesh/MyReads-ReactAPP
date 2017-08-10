@@ -6,9 +6,9 @@ import * as BooksAPI from '../../utils/BooksAPI'
 
 class App extends Component {
   state = {
-    currentlyReading: [],
-    wantToRead: [],
-    read: [],
+    currentlyReading: {},
+    wantToRead: {},
+    read: {},
     allBooks: {}
   }
 
