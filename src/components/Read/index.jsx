@@ -9,8 +9,8 @@ class Read extends Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {
-              Object.keys(this.props.books).map((key)=>(
-                this.props.books[key] ? <Book key={this.props.books[key].id}  book={this.props.books[key]}/> : null
+              this.props.books.map((book)=>(
+              <Book key={book.id} book={book} updateShelf={this.props.updateShelf}/>
               ))
             }
           </ol>

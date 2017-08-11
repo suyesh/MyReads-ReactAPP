@@ -13,9 +13,9 @@ class MyReads extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <CurrentlyReading books={this.props.currentlyReading}/>
-            <WantToRead books={this.props.wantToRead}/>
-            <Read books={this.props.wantToRead}/>
+            <CurrentlyReading books={this.props.currentlyReading} updateShelf={this.props.updateShelf}/>
+            <WantToRead books={this.props.wantToRead} updateShelf={this.props.updateShelf}/>
+            <Read books={this.props.read} updateShelf={this.props.updateShelf}/>
           </div>
         </div>
         <div className="open-search">
