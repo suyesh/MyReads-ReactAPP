@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Route} from 'react-router-dom';
+import {Route} from 'react-router-dom'
 import MyReads from '../MyReads'
 import Search from '../Search'
 import * as BooksAPI from '../../utils/BooksAPI'
@@ -95,7 +95,7 @@ class App extends Component {
         ]
       })
     } else if (shelf === "read") {
-        console.log("READ")
+      console.log("READ")
       this.setState({
         read: [
           ...this.state.read,
@@ -115,21 +115,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Route
-          path='/'
-          render={() => (
-            <MyReads
-              currentlyReading={this.state.currentlyReading}
-              wantToRead={this.state.wantToRead}
-              read={this.state.read}
-              updateShelf={this.updateShelf}/>)}
-              exact
-            />
-        <Route
-          path='/search'
-          render={() => (
-            <Search/>)}
-          />
+        <Route path='/' render={() => (<MyReads currentlyReading={this.state.currentlyReading} wantToRead={this.state.wantToRead} read={this.state.read} updateShelf={this.updateShelf}/>)} exact/>
+        <Route path='/search' render={() => (<Search/>)}/>
       </div>
     );
   }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
+import Book from '../Book'
 import {Link} from 'react-router-dom'
 
 class Search extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link to="/" className="close-search">Close</Link>
@@ -17,7 +18,6 @@ class Search extends Component {
                  you don't find a specific author or title. Every search is limited by search terms.
                */}
             <input type="text" placeholder="Search by title or author"/>
-
           </div>
         </div>
         <div className="search-books-results">
