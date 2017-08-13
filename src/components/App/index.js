@@ -12,7 +12,8 @@ class App extends Component {
     allBooks: [],
     none: [],
     query: '',
-    searchResults: ''
+    searchResults: '',
+    bookStatus: {}
   }
 
   updateQuery = (query) => {
@@ -27,32 +28,44 @@ class App extends Component {
     }).then(() => {
       this.state.allBooks.forEach((book) => {
         if (book.shelf === "currentlyReading") {
+          let prevBookStatus = this.state.bookStatus
+          prevBookStatus[book.id] = "currentlyReading"
           this.setState({
             currentlyReading: [
               ...this.state.currentlyReading,
               book
-            ]
+            ],
+            bookStatus: prevBookStatus
           });
         } else if (book.shelf === "wantToRead") {
+          let prevBookStatus = this.state.bookStatus
+          prevBookStatus[book.id] = "wantToRead"
           this.setState({
             wantToRead: [
               ...this.state.wantToRead,
               book
-            ]
+            ],
+            bookStatus: prevBookStatus
           });
         } else if (book.shelf === 'read') {
+          let prevBookStatus = this.state.bookStatus
+          prevBookStatus[book.id] = "read"
           this.setState({
             read: [
               ...this.state.read,
               book
-            ]
+            ],
+            bookStatus: prevBookStatus
           })
         } else {
+          let prevBookStatus = this.state.bookStatus
+          prevBookStatus[book.id] = "none"
           this.setState({
             none: [
               ...this.state.none,
               book
-            ]
+            ],
+            bookStatus: prevBookStatus
           })
         }
       });
@@ -65,6 +78,14 @@ class App extends Component {
       query: ""
     })
   )
+
+  bookStatusUpdate = (id, state) => {
+    let prevBookStatus = this.state.bookStatus
+    prevBookStatus[id] = state
+    this.setState({
+      bookStatus: prevBookStatus
+    })
+  }
 
   removeFromShelf = (book) => {
     if (this.state.currentlyReading.indexOf(book) > -1) {
@@ -133,7 +154,10 @@ class App extends Component {
             currentlyReading={this.state.currentlyReading}
             wantToRead={this.state.wantToRead}
             read={this.state.read}
-            updateShelf={this.updateShelf}/>)}
+            updateShelf={this.updateShelf}
+            bookStatusUpdate={this.bookStatusUpdate}
+            bookStatus={this.state.bookStatus}
+          />)}
             exact/>
         <Route path='/search' render={() => (
           <Search
@@ -141,7 +165,10 @@ class App extends Component {
             inputValue={this.state.query}
             updateQuery={this.updateQuery}
             updateShelf={this.updateShelf}
-            clearSearchResults={this.clearSearchResults}/>
+            clearSearchResults={this.clearSearchResults}
+            bookStatusUpdate={this.bookStatusUpdate}
+            bookStatus={this.state.bookStatus}
+          />
           )}/>
       </div>
     );

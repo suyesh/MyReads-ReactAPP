@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import Book from '../Book'
 
-class Read extends Component {
-  render(){
-    return(
+class CurrentlyReading extends Component {
+
+  render() {
+    return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">Read</h2>
+        <h2 className="bookshelf-title">Currently Reading</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {
@@ -14,6 +15,8 @@ class Read extends Component {
                 key={book.id}
                 book={book}
                 updateShelf={this.props.updateShelf}
+                bookStatus={this.props.bookStatus}
+                bookStatusUpdate={this.props.bookStatusUpdate}
               />
               ))
             }
@@ -24,4 +27,4 @@ class Read extends Component {
   }
 }
 
-export default Read;
+export default CurrentlyReading

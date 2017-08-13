@@ -14,6 +14,8 @@ class WantToRead extends Component {
                 key={book.id}
                 book={book}
                 updateShelf={this.props.updateShelf}
+                bookStatus={this.props.bookStatus}
+                bookStatusUpdate={this.props.bookStatusUpdate}
               />
               ))
             }

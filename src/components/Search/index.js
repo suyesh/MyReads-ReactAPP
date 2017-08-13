@@ -22,6 +22,8 @@ class Search extends Component {
               <Book
                 key={book.id} book={book}
                 updateShelf={this.props.updateShelf}
+                bookStatus={this.props.bookStatus}
+                bookStatusUpdate={this.props.bookStatusUpdate}
               />)) : null}
           </ol>
         </div>

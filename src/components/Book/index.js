@@ -1,14 +1,8 @@
 import React, {Component} from 'react'
 
 class Book extends Component {
-  state = {
-    value: ""
-  }
-
    handleChange = (e, props) => {
-     this.setState({
-       value: e.target.value
-     })
+    this.props.bookStatusUpdate(this.props.book.id, e.target.value)
     this.props.updateShelf(props,e.target.value)
   }
 
@@ -23,7 +17,7 @@ class Book extends Component {
               backgroundImage: `url("${this.props.book.imageLinks !== undefined ? this.props.book.imageLinks.thumbnail : null}")`
             }}></div>
             <div className="book-shelf-changer">
-              <select value={this.state.value} onChange={(e) => this.handleChange(e, this.props.book)}>
+              <select value={this.props.bookStatus[this.props.book.id] ? this.props.bookStatus[this.props.book.id] : "" } onChange={(e) => this.handleChange(e, this.props.book)}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>

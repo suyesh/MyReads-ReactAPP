@@ -16,14 +16,20 @@ class MyReads extends Component {
             <CurrentlyReading
               books={this.props.currentlyReading}
               updateShelf={this.props.updateShelf}
+              bookStatus={this.props.bookStatus}
+              bookStatusUpdate={this.props.bookStatusUpdate}
             />
             <WantToRead
               books={this.props.wantToRead}
               updateShelf={this.props.updateShelf}
+              bookStatus={this.props.bookStatus}
+              bookStatusUpdate={this.props.bookStatusUpdate}
             />
             <Read
                books={this.props.read}
                updateShelf={this.props.updateShelf}
+               bookStatus={this.props.bookStatus}
+               bookStatusUpdate={this.props.bookStatusUpdate}
              />
           </div>
         </div>
