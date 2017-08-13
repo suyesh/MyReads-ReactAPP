@@ -11,7 +11,11 @@ class CurrentlyReading extends Component {
           <ol className="books-grid">
             {
               this.props.books.map((book)=>(
-              <Book key={book.id} book={book} updateShelf={this.props.updateShelf}/>
+              <Book
+                key={book.id}
+                book={book}
+                updateShelf={this.props.updateShelf}
+              />
               ))
             }
           </ol>

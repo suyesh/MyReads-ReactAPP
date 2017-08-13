@@ -10,7 +10,15 @@ class App extends Component {
     wantToRead: [],
     read: [],
     allBooks: [],
-    none: []
+    none: [],
+    query: '',
+    searchResults: ''
+  }
+
+  updateQuery = (query) => {
+    this.setState({query: query.trim()})
+    BooksAPI.search(this.state.query, '5').then((books) => {this.setState({searchResults: books})})
+    console.log(this.state.searchResults)
   }
 
   componentDidMount() {
@@ -51,6 +59,13 @@ class App extends Component {
     })
   }
 
+  clearSearchResults = () => (
+    this.setState({
+      searchResults: "",
+      query: ""
+    })
+  )
+
   removeFromShelf = (book) => {
     if (this.state.currentlyReading.indexOf(book) > -1) {
       let new_currentlyReading = this.state.currentlyReading
@@ -77,7 +92,6 @@ class App extends Component {
   updateShelf = (book, shelf) => {
     this.removeFromShelf(book);
     BooksAPI.update(book, shelf).then((response) => {
-      console.log(response)
     })
     if (shelf === "currentlyReading") {
       this.setState({
@@ -95,7 +109,6 @@ class App extends Component {
         ]
       })
     } else if (shelf === "read") {
-      console.log("READ")
       this.setState({
         read: [
           ...this.state.read,
@@ -115,8 +128,21 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Route path='/' render={() => (<MyReads currentlyReading={this.state.currentlyReading} wantToRead={this.state.wantToRead} read={this.state.read} updateShelf={this.updateShelf}/>)} exact/>
-        <Route path='/search' render={() => (<Search/>)}/>
+        <Route path='/' render={() => (
+          <MyReads
+            currentlyReading={this.state.currentlyReading}
+            wantToRead={this.state.wantToRead}
+            read={this.state.read}
+            updateShelf={this.updateShelf}/>)}
+            exact/>
+        <Route path='/search' render={() => (
+          <Search
+            searchResults={this.state.searchResults}
+            inputValue={this.state.query}
+            updateQuery={this.updateQuery}
+            updateShelf={this.updateShelf}
+            clearSearchResults={this.clearSearchResults}/>
+          )}/>
       </div>
     );
   }
