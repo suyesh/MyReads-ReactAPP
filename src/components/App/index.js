@@ -17,9 +17,11 @@ class App extends Component {
   }
 
   updateQuery = (query) => {
-    this.setState({query: query.trim()})
-    BooksAPI.search(this.state.query, '5').then((books) => {this.setState({searchResults: books})})
-    console.log(this.state.searchResults)
+    if (query){
+      this.setState({query: query.trim()})
+      BooksAPI.search(query, 5).then((books) => {this.setState({searchResults: books})})
+      console.log(this.state.searchResults)
+    }
   }
 
   componentDidMount() {
@@ -122,7 +124,6 @@ class App extends Component {
         ]
       })
     } else if (shelf === "wantToRead") {
-      console.log("WANTREAD")
       this.setState({
         wantToRead: [
           ...this.state.wantToRead,
