@@ -13,7 +13,12 @@ class Search extends Component {
         <div className="search-books-bar">
           <Link to="/" className="close-search" onClick={()=> this.props.clearSearchResults()} >Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.props.inputValue} onChange={(e) => this.props.updateQuery(e.target.value)}/>
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              value={this.props.inputValue}
+              onChange={(e) => this.props.updateQuery(e.target.value)}
+            />
           </div>
         </div>
         <div className="search-books-results">
